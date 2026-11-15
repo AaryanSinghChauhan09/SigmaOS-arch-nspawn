@@ -100,7 +100,7 @@ impl NspawnManager {
 mod tests {
     use super::*;
 
-    fn make_Container(id: &str, name: &str) -> Container {
+    fn make_container(id: &str, name: &str) -> Container {
         Container {
             id: id.to_string(),
             name: name.to_string(),
@@ -109,7 +109,7 @@ mod tests {
         }
     }
 
-    fn make_Mount(id: &str, val: &str) -> Mount {
+    fn make_mount(id: &str, val: &str) -> Mount {
         Mount {
             id: id.to_string(),
             source: val.to_string(),
@@ -128,7 +128,7 @@ mod tests {
     #[test]
     fn test_add_item_aaa() {
         let mut mgr = NspawnManager::new("test");
-        let item = make_Container("item1", "First Item");
+        let item = make_container("item1", "First Item");
         assert!(mgr.add_item(item).is_ok());
         assert_eq!(mgr.count(), 1);
     }
@@ -136,23 +136,26 @@ mod tests {
     #[test]
     fn test_empty_name_rejected_aaa() {
         let mut mgr = NspawnManager::new("test");
-        let item = make_Container("item1", "");
+        let item = make_container("item1", "");
         assert_eq!(mgr.add_item(item), Err(NspawnError::EmptyName));
     }
 
     #[test]
     fn test_duplicate_rejected_aaa() {
         let mut mgr = NspawnManager::new("test");
-        let item1 = make_Container("item1", "First");
-        let item2 = make_Container("item1", "Duplicate");
+        let item1 = make_container("item1", "First");
+        let item2 = make_container("item1", "Duplicate");
         mgr.add_item(item1).unwrap();
-        assert_eq!(mgr.add_item(item2), Err(NspawnError::Duplicate("item1".to_string())));
+        assert_eq!(
+            mgr.add_item(item2),
+            Err(NspawnError::Duplicate("item1".to_string()))
+        );
     }
 
     #[test]
     fn test_config_addition_aaa() {
         let mut mgr = NspawnManager::new("test");
-        let cfg = make_Mount("cfg1", "value1");
+        let cfg = make_mount("cfg1", "value1");
         mgr.add_config(cfg);
         assert_eq!(mgr.config_count(), 1);
     }
@@ -160,7 +163,7 @@ mod tests {
     #[test]
     fn test_get_item_aaa() {
         let mut mgr = NspawnManager::new("test");
-        let item = make_Container("item1", "First Item");
+        let item = make_container("item1", "First Item");
         mgr.add_item(item).unwrap();
         assert!(mgr.get_item("item1").is_some());
         assert!(mgr.get_item("none").is_none());
@@ -169,10 +172,13 @@ mod tests {
     #[test]
     fn test_set_enabled_aaa() {
         let mut mgr = NspawnManager::new("test");
-        let item = make_Container("item1", "First Item");
+        let item = make_container("item1", "First Item");
         mgr.add_item(item).unwrap();
         assert!(mgr.set_enabled("item1", false).is_ok());
         assert!(!mgr.get_item("item1").unwrap().enabled);
-        assert_eq!(mgr.set_enabled("none", true), Err(NspawnError::NotFound("none".to_string())));
+        assert_eq!(
+            mgr.set_enabled("none", true),
+            Err(NspawnError::NotFound("none".to_string()))
+        );
     }
 }
