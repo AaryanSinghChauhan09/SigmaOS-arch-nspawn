@@ -3,7 +3,7 @@ name = "SigmaOS-arch-nspawn"
 tier = 2
 stability = "scaffold"
 language = "rust"
-description = "arch-nspawn component"
+description = "SigmaOS SigmaOS-arch-nspawn component"
 upstream = []
 
 [contract]
