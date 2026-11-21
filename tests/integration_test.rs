@@ -1,8 +1,8 @@
-// Integration test for SigmaOS-arch-nspawn
+// Integration test for SigmaOS-nspawn
 // Verifies the crate builds and links as a dependency.
 #![allow(unused_imports)]
 
-use sigmaos_arch_nspawn as _;
+use sigmaos_nspawn as _;
 
 #[test]
 fn crate_links_and_runs() {

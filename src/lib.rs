@@ -1,9 +1,9 @@
-//! SigmaOS-arch-nspawn: arch-nspawn container model.
+//! SigmaOS-nspawn: nspawn container model.
 
 use std::collections::BTreeMap;
 use std::fmt;
 
-/// Primary domain entity for arch-nspawn container.
+/// Primary domain entity for nspawn container.
 pub struct Container {
     pub id: String,
     pub name: String,
@@ -11,14 +11,14 @@ pub struct Container {
     pub enabled: bool,
 }
 
-/// Secondary domain entity for arch-nspawn container.
+/// Secondary domain entity for nspawn container.
 pub struct Mount {
     pub id: String,
     pub source: String,
     pub description: String,
 }
 
-/// Errors for the arch-nspawn container domain.
+/// Errors for the nspawn container domain.
 #[derive(Debug, PartialEq)]
 pub enum NspawnError {
     EmptyName,
@@ -38,7 +38,7 @@ impl fmt::Display for NspawnError {
 
 impl std::error::Error for NspawnError {}
 
-/// Registry and manager for arch-nspawn container.
+/// Registry and manager for nspawn container.
 pub struct NspawnManager {
     pub name: String,
     items: BTreeMap<String, Container>,
@@ -104,7 +104,7 @@ mod tests {
         Container {
             id: id.to_string(),
             name: name.to_string(),
-            rootdir: "arch-nspawn-default".to_string(),
+            rootdir: "nspawn-default".to_string(),
             enabled: true,
         }
     }

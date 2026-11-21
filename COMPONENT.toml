@@ -1,9 +1,9 @@
 [component]
-name = "SigmaOS-arch-nspawn"
+name = "SigmaOS-nspawn"
 tier = 2
 stability = "beta"
 language = "rust"
-description = "SigmaOS SigmaOS-arch-nspawn component"
+description = "SigmaOS SigmaOS-nspawn component"
 upstream = []
 
 [contract]

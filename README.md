@@ -1,4 +1,4 @@
-# SigmaOS-arch-nspawn
+# SigmaOS-nspawn
 
 > **SigmaOS Arch systemd-nspawn Containerization Subsystem** — Isolated execution environments, ephemeral roots, and Arch package sandboxing.
 
